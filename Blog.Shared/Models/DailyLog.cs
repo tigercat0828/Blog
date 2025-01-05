@@ -1,4 +1,4 @@
-namespace Blog.Shared;
+namespace Blog.Shared.Models;
 
 public class DailyLog {
     public string Title { get; set; }
