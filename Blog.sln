@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.WebUI", "Blog.WebUI\Blog.WebUI.csproj", "{854AAC8B-0400-4078-8699-B9320924FBA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Shared", "Blog.Shared\Blog.Shared.csproj", "{CA665C97-BDF7-4396-94BA-CB9695E91DCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{854AAC8B-0400-4078-8699-B9320924FBA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{854AAC8B-0400-4078-8699-B9320924FBA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{854AAC8B-0400-4078-8699-B9320924FBA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{854AAC8B-0400-4078-8699-B9320924FBA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA665C97-BDF7-4396-94BA-CB9695E91DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA665C97-BDF7-4396-94BA-CB9695E91DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA665C97-BDF7-4396-94BA-CB9695E91DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA665C97-BDF7-4396-94BA-CB9695E91DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
