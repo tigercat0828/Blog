@@ -4,13 +4,14 @@ using Blog.WebUI.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//// Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 // idk 要不要加
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
 builder.Services.Configure<MongoDbConfig>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<ArticleService>();
 

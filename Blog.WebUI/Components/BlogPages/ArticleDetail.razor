@@ -1,0 +1,51 @@
+﻿@page "/article/{id}"
+@inject ArticleService ArticleService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+@using Markdig
+@if (_article != null) {
+
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-12">
+                <h3>@_article.Title</h3>            
+                <p>
+                    @_article.Created.ToString("yyyy/MM/d")
+                </p>
+
+                @foreach (var tag in _article.Tags) {
+                    <span class="badge bg-secondary m-1">@tag</span>
+                }
+
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                @((MarkupString)MarkdownPreview)
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-primary" href="/article/edit/@id">編輯</a>
+    <button class="btn btn-danger" @onclick="DeleteArticle">刪除</button>
+}
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    Article _article;
+
+    public string MarkdownPreview => Markdown.ToHtml(MarkDownContent);
+    public string MarkDownContent { get; set; } = string.Empty;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _article = await ArticleService.GetArticleByIdAsync(id);
+        MarkDownContent = _article.Content;
+    }
+    private async Task DeleteArticle() {
+        await ArticleService.DeleteArticleAsync(id);
+        NavigationManager.NavigateTo("/article");
+    }
+
+}

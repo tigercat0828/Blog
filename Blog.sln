@@ -1,8 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35617.110
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Shared", "Blog.Shared\Blog.Shared.csproj", "{CA665C97-BDF7-4396-94BA-CB9695E91DCB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.WebUI", "Blog.WebUI\Blog.WebUI.csproj", "{56010965-2B8D-4568-8970-4DACBA8CB936}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{550074EB-0A40-4263-B0A8-B66563A49C2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +23,15 @@ Global
 		{56010965-2B8D-4568-8970-4DACBA8CB936}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56010965-2B8D-4568-8970-4DACBA8CB936}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56010965-2B8D-4568-8970-4DACBA8CB936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{550074EB-0A40-4263-B0A8-B66563A49C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{550074EB-0A40-4263-B0A8-B66563A49C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{550074EB-0A40-4263-B0A8-B66563A49C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{550074EB-0A40-4263-B0A8-B66563A49C2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {409F3F3D-FCDC-44BE-B0B1-8A2E8D86BCAB}
 	EndGlobalSection
 EndGlobal

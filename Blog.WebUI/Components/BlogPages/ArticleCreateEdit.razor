@@ -1,0 +1,92 @@
+@page "/article/create"
+@page "/article/edit/{id}"
+@inject ArticleService ArticleService
+@inject NavigationManager NavigationManager
+@using Markdig;
+@rendermode InteractiveServer
+
+<h3>Create Article</h3>
+
+<div class="container-fluid">
+    <form>
+        <div class="row mb-3">
+            <div class="col-6">
+                <label for="title" class="form-label">Title</label>
+                <InputText id="title" class="form-control" @bind-Value="article.Title" />
+            </div>
+            <div class="col-6">
+                <label for="description" class="form-label">Description</label>
+                <InputText id="description" class="form-control" @bind-Value="article.Description" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="tags" class="form-label">Tags (comma separated)</label>
+                <InputText id="tags" class="form-control" @bind-Value="tags" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <textarea class="form-control" @bind-value="MarkDownContent" @bind-value:event="oninput" />
+            </div>
+            <div class="col-6">
+                @((MarkupString)MarkdownPreview)
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <button type="button" class="btn btn-primary" @onclick="@HandleValidSubmit">
+                    @if (isEditMode)
+                    {
+                        @("Edit")
+                    }
+                    else
+                    {
+                        @("Create")
+                    }
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@code {
+
+
+    public string MarkDownContent { get; set; } = string.Empty;
+    public string MarkdownPreview => Markdown.ToHtml(MarkDownContent);
+
+    private Article article = new Article();
+    private string tags;
+
+    [Parameter]
+    public string? id { get; set; }
+    bool isEditMode = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(id != null)
+        {
+            isEditMode = true;
+            article = await ArticleService.GetArticleByIdAsync(id);
+            MarkDownContent = article.Content;
+            tags = string.Join(",", article.Tags);
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        article.Tags = tags.Split(',').Select(tag => tag.Trim()).ToList();
+        article.Created = DateTime.Now;
+        article.Content = MarkDownContent;
+        if (isEditMode)
+        {
+            await ArticleService.UpdateArticle(article.Id, article);
+        }
+        else
+        {
+            await ArticleService.CreateArticleAsync(article);
+        }
+        NavigationManager.NavigateTo($"/article/{id}");
+    }
+}

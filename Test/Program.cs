@@ -1,4 +1,4 @@
-using WebUI.Components;
+using Test.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 

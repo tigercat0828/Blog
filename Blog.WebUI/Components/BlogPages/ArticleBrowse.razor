@@ -1,0 +1,53 @@
+@page "/article"
+@inject ArticleService ArticleService
+@rendermode InteractiveServer
+
+    
+<div class="row">
+    <div class="col-11">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="輸入關鍵字進行搜尋..." @bind="searchText" @bind:event="oninput" />
+            <button class="btn btn-primary" @onclick="HandleInput">搜尋</button>
+        </div>
+    </div>
+    <div class="col-1">
+        <a href="/article/create" class="btn btn-primary">
+            New
+        </a>
+    </div>
+</div>
+
+
+@if (_articles != null) {
+
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var article in _articles) {
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <a href="/article/@article.Id">
+                            <h5 class="card-title">_@(article.Title)_</h5>
+                        </a>
+
+                        <p class="card-text">@article.Description</p>
+                        @foreach (var tag in article.Tags) {
+                            <span class="badge bg-secondary m-1">@tag</span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    List<Article> _articles = [];
+    private string searchText = string.Empty;
+    protected override async Task OnInitializedAsync() {
+        _articles = await ArticleService.GetAllArticlesAsync();
+    }
+    private async void HandleInput() {
+        _articles = await ArticleService.SearchArticlesByTitleAsync(searchText);
+
+    }
+}
