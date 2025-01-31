@@ -12,11 +12,11 @@
         <div class="row mb-3">
             <div class="col-6">
                 <label for="title" class="form-label">Title</label>
-                <InputText id="title" class="form-control" @bind-Value="article.Title" />
+                <input type="text" id="title" class="form-control" @bind-value="article.Title" />
             </div>
             <div class="col-6">
                 <label for="description" class="form-label">Description</label>
-                <InputText id="description" class="form-control" @bind-Value="article.Description" />
+                <input type="text" id="description" class="form-control" @bind-value="article.Description" />
             </div>
         </div>
         <div class="row mb-3">
@@ -26,23 +26,28 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-6">
-                <textarea class="form-control" @bind-value="MarkDownContent" @bind-value:event="oninput" />
+@*             <div class="col-6">
+                <textarea class="form-control" @bind-value="MarkDownContent" @bind-value:event="oninput" rows="50" />
             </div>
             <div class="col-6">
                 @((MarkupString)MarkdownPreview)
+            </div> *@
+
+            <div class="col-12">
+                <textarea class="form-control" @bind-value="MarkDownContent" @bind-value:event="oninput" rows="30"/>
             </div>
+
         </div>
         <div class="row mb-3">
             <div class="col-12">
-                <button type="button" class="btn btn-primary" @onclick="@HandleValidSubmit">
+                <button type="button" class="btn btn-primary" @onclick="HandleValidSubmit">
                     @if (isEditMode)
                     {
-                        @("Edit")
+                        @("編輯完成")
                     }
                     else
                     {
-                        @("Create")
+                        @("新建文章")
                     }
                 </button>
             </div>
